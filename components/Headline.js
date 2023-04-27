@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 
@@ -7,7 +6,7 @@ export function Headline(props) {
     <div className={styles.description}>
       <p>
         Wellcome {props.page} Page. Get started by editing&nbsp;
-        <code className={styles.code}>pages/{props.page}.js</code>
+        {props.children}
       </p>
       <div>
         <a
