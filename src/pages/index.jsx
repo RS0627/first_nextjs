@@ -1,15 +1,18 @@
 import styles from "@/src/styles/Home.module.css";
 import { Main } from "@/src/components/Main";
 import { Header } from "@/src/components/Header";
-import { useCounter } from "@/src/hocks/useCounter";
-import { useInputArray } from "@/src/hocks/useInputArray";
-import { useEffectGreen } from "@/src/hocks/useEffectGreen";
 
-export default function Home() {
-  const { cnt, isShow, handleClick, handleDisplay } = useCounter();
-  const { text, array, handleTextChange, handleAdd } = useInputArray();
-
-  useEffectGreen();
+export default function Home(props) {
+  const {
+    cnt,
+    isShow,
+    handleClick,
+    handleDisplay,
+    text,
+    array,
+    handleTextChange,
+    handleAdd,
+  } = props;
 
   return (
     <div className={styles.container}>
