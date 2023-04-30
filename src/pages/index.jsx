@@ -13,13 +13,17 @@ export default function Home() {
     (e) => {
       console.log(cnt);
       if (cnt < 10) {
-        setCnt(function (inputCnt) {
-          return inputCnt + 1;
+        setCnt(function (prevInputCnt) {
+          return prevInputCnt + 1;
         });
       }
     },
     [cnt]
   );
+
+  const handleDisplay = useCallback((e) => {
+    setIsShow((prevIsShow) => !prevIsShow);
+  }, []);
 
   const handleTextChange = useCallback((e) => {
     if (e.target.value.length > 5) {
