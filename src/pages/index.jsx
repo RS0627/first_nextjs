@@ -1,60 +1,15 @@
-import Head from "next/head";
 import styles from "@/src/styles/Home.module.css";
 import { Main } from "@/src/components/Main";
 import { Header } from "@/src/components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "@/src/hocks/useCounter";
+import { useInputArray } from "@/src/hocks/useInputArray";
+import { useEffectGreen } from "@/src/hocks/useEffectGreen";
 
 export default function Home() {
-  const [cnt, setCnt] = useState(1);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
+  const { cnt, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleTextChange, handleAdd } = useInputArray();
 
-  const handleClick = useCallback(
-    (e) => {
-      console.log(cnt);
-      if (cnt < 10) {
-        setCnt(function (prevInputCnt) {
-          return prevInputCnt + 1;
-        });
-      }
-    },
-    [cnt]
-  );
-
-  const handleDisplay = useCallback((e) => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  }, []);
-
-  const handleTextChange = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      alert("文字制限に引っかかりました");
-      return;
-    }
-    setText(e.target.value);
-  }, []);
-
-  const handleAdd = useCallback(
-    (e) => {
-      setArray((prevArray) => {
-        if (prevArray.some((item) => item === text)) {
-          alert("同じ要素があるため追加できません");
-          return prevArray;
-        }
-        return [...prevArray, text];
-      });
-    },
-    [text]
-  );
-
-  useEffect(() => {
-    console.log("effect");
-    document.body.style.backgroundColor = "lightGreen";
-
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
+  useEffectGreen();
 
   return (
     <div className={styles.container}>
