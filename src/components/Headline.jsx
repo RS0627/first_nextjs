@@ -4,6 +4,7 @@ import classes from "@/src/components/HeadLine.module.css";
 export function Headline(props) {
   return (
     <div className={classes.description}>
+      <button onClick={props.handleReduce}>減らす</button>
       <p>
         Wellcome {props.page} Page. Get started by editing&nbsp;
         {props.children}
