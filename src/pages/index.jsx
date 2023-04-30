@@ -5,6 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [cnt, setCnt] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const handleClick = useCallback(
     (e) => {
@@ -18,6 +20,18 @@ export default function Home() {
     [cnt]
   );
 
+  const handleTextChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("文字制限に引っかかりました");
+      return;
+    }
+    setText(e.target.value);
+  }, []);
+
+  const handleDisplay = useCallback((e) => {
+    setIsShow((isShow) => !isShow);
+  }, []);
+
   useEffect(() => {
     console.log("effect");
     document.body.style.backgroundColor = "lightGreen";
@@ -30,10 +44,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      <h1>{cnt}</h1>
+      {isShow ? <h1>{cnt}</h1> : null}
       <button href="./about" onClick={handleClick}>
         ボタン
       </button>
+      <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+      <input type="text" value={text} onChange={handleTextChange} />
+
       <Main page="index" />
     </>
   );
