@@ -8,6 +8,7 @@ export default function Home() {
   const [cnt, setCnt] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState([]);
 
   const handleClick = useCallback(
     (e) => {
@@ -33,9 +34,18 @@ export default function Home() {
     setText(e.target.value);
   }, []);
 
-  const handleDisplay = useCallback((e) => {
-    setIsShow((isShow) => !isShow);
-  }, []);
+  const handleAdd = useCallback(
+    (e) => {
+      setArray((prevArray) => {
+        if (prevArray.some((item) => item === text)) {
+          alert("同じ要素があるため追加できません");
+          return prevArray;
+        }
+        return [...prevArray, text];
+      });
+    },
+    [text]
+  );
 
   useEffect(() => {
     console.log("effect");
@@ -47,7 +57,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className={styles.container}>
       <Header />
       {isShow ? <h1>{cnt}</h1> : null}
       <button href="./about" onClick={handleClick}>
@@ -55,8 +65,14 @@ export default function Home() {
       </button>
       <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
       <input type="text" value={text} onChange={handleTextChange} />
+      <button onClick={handleAdd}>追加</button>
 
+      <ul>
+        {array.map((item) => {
+          return <li kye={item}>{item}</li>;
+        })}
+      </ul>
       <Main page="index" />
-    </>
+    </div>
   );
 }
