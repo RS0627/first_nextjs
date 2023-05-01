@@ -3,7 +3,7 @@ import { Main } from "@/src/components/Main";
 import { Header } from "@/src/components/Header";
 
 export default function About({
-  cnt,
+  doubleCnt,
   isShow,
   handleClick,
   handleDisplay,
@@ -15,7 +15,7 @@ export default function About({
   return (
     <div className={styles.container}>
       <Header />
-      {isShow ? <h1>{cnt}</h1> : null}
+      {isShow ? <h1>{doubleCnt}</h1> : null}
       <button href="./about" onClick={handleClick}>
         ボタン
       </button>
