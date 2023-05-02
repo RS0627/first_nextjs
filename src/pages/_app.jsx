@@ -2,13 +2,13 @@ import Head from "next/head";
 import "@/src/styles/globals.css";
 import { useCounter } from "@/src/hocks/useCounter";
 import { useInputArray } from "@/src/hocks/useInputArray";
-import { useEffectGreen } from "@/src/hocks/useEffectGreen";
+import { useEffectBG } from "@/src/hocks/useEffectBG";
 
 export default function App({ Component, pageProps }) {
   const counter = useCounter();
   const inputArray = useInputArray();
 
-  useEffectGreen();
+  useEffectBG();
 
   return (
     <>
